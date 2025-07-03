@@ -5,6 +5,14 @@ public class StringCalculator {
         if(input.equals("")){
             return 0;
         }
-        else return Integer.parseInt(input);
+        if(input.contains(",")){
+            String parts[] = input.split(",");
+            int sum = 0;
+            for(String part : parts){
+                sum += Integer.parseInt(part);
+            }
+            return sum;
+        }
+        return Integer.parseInt(input);
     }
 }
