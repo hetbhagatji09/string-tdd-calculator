@@ -10,4 +10,9 @@ class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(0, calc.add(""));
     }
+    @Test
+    void shouldReturnNumberWhenOnlyOneNumberGiven(){
+        StringCalculator calc = new StringCalculator();
+        assertEquals(1, calc.add("1"));
+    }
 }
