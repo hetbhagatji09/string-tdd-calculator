@@ -20,4 +20,9 @@ class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(3, calc.add("1,2"));
     }
+    @Test
+    void shouldReturnSumWhenMultipleNumbersAreGiven(){
+        StringCalculator calc = new StringCalculator();
+        assertEquals(6, calc.add("1,2,3"));
+    }
 }
