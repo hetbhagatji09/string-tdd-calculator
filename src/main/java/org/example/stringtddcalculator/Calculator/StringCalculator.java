@@ -1,18 +1,27 @@
 package org.example.stringtddcalculator.Calculator;
 
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     public int add(String input) {
         if(input.equals("")){
             return 0;
         }
-        if(input.contains(",")){
-            String parts[] = input.split("[,\n]");
-            int sum = 0;
-            for(String part : parts){
+        String delimiter="[,\n]";
+        String numbers=input;
+        if (input.startsWith("//")) {
+            int delimiterEndIndex = input.indexOf("\n");
+            String delimiterPart = input.substring(2, delimiterEndIndex);
+            delimiter = Pattern.quote(delimiterPart);
+            numbers = input.substring(delimiterEndIndex + 1);
+        }
+        String[] parts = numbers.split(delimiter);
+        int sum = 0;
+        for (String part : parts) {
+            if (!part.isEmpty()) {
                 sum += Integer.parseInt(part);
             }
-            return sum;
         }
-        return Integer.parseInt(input);
+        return sum;
     }
 }
