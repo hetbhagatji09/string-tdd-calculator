@@ -5,6 +5,12 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+
+    private int callCount = 0;
+
+    public int getCalledCount() {
+        return callCount;
+    }
     public int add(String input) {
         if(input.equals("")){
             return 0;
