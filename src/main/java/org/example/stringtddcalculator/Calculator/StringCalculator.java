@@ -31,6 +31,9 @@ public class StringCalculator {
         for (String part : parts) {
             if (!part.isEmpty()) {
                 int num = Integer.parseInt(part);
+                if(num>1000){
+                    num=0;
+                }
                 if (num < 0) {
                     negatives.add(num);
                 }
