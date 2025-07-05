@@ -12,6 +12,7 @@ public class StringCalculator {
         return callCount;
     }
     public int add(String input) {
+        callCount++;
         if(input.equals("")){
             return 0;
         }
