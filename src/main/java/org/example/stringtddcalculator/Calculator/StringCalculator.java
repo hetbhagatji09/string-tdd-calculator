@@ -16,12 +16,29 @@ public class StringCalculator {
         if(input.equals("")){
             return 0;
         }
-        String delimiter="[,\n]";
+        String delimiter="[,\n*]";
         String numbers=input;
         if (input.startsWith("//")) {
             int delimiterEndIndex = input.indexOf("\n");
             String delimiterPart = input.substring(2, delimiterEndIndex);
-            delimiter = Pattern.quote(delimiterPart);
+
+            if (delimiterPart.contains("[") && delimiterPart.contains("]")) {
+                List<String> delimiters = new ArrayList<>();
+                int i = 0;
+                while (i < delimiterPart.length()) {
+                    if (delimiterPart.charAt(i) == '[') {
+                        int j = delimiterPart.indexOf(']', i);
+                        delimiters.add(Pattern.quote(delimiterPart.substring(i + 1, j)));
+                        i = j + 1;
+                    } else {
+                        i++;
+                    }
+                }
+                delimiter = String.join("|", delimiters); // regex OR for split
+            } else {
+                delimiter = Pattern.quote(delimiterPart);
+            }
+
             numbers = input.substring(delimiterEndIndex + 1);
         }
         String[] parts = numbers.split(delimiter);
